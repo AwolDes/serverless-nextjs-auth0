@@ -1,0 +1,44 @@
+{
+    "extends": "airbnb",
+    "globals": {
+      "localStorage": true,
+      "React": "writable"
+    },
+    "rules": {
+        "react/react-in-jsx-scope": "off",
+        "global-require": 0,
+        "new-cap": [2, {"capIsNew": false, "newIsCap": true}],
+        "no-class-assign": 0,
+        "no-nested-ternary": 0,
+        "no-param-reassign": 0,
+        "no-shadow": 0,
+        "import/imports-first": 0,
+        "react/jsx-filename-extension": 0,
+        "jsx-a11y/html-has-lang": 0,
+        "no-confusing-arrow": 0,
+        "react/forbid-prop-types": 0,
+        "react/no-unused-prop-types": 0,
+        "class-methods-use-this": 0,
+        "arrow-parens": 0,
+        "comma-dangle": "off",
+        "camelcase": "off",
+        "react/jsx-one-expression-per-line": "off",
+        "import/prefer-default-export": "off",
+        "max-len": [ "warn",
+          {
+            "code": 120
+          }
+        ],
+        "jsx-a11y/anchor-is-valid": [ "error", {
+          "components": [ "Link" ],
+          "specialLink": [ "hrefLeft", "hrefRight" ],
+          "aspects": [ "invalidHref", "preferButton" ]
+        }],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
+    },
+    "plugins": ["jest", "react-hooks"],
+    "env": {
+      "jest": true
+    }
+}

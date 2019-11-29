@@ -1,0 +1,8 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "./components/card.css";
+
+body {
+  @apply bg-blue-500 p-12;
+}

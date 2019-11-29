@@ -1,0 +1,6 @@
+.card {
+    @apply p-4 bg-white shadow rounded;
+    &--padded {
+        @apply bg-white p-10;
+    }
+}

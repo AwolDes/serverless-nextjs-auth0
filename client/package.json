@@ -8,7 +8,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "yarn lint --fix",
+    "deploy": "sls",
+    "remove": "sls remove",
+    "deploy:staging": "NODE_ENV=staging yarn deploy",
+    "remove:staging": "NODE_ENV=staging yarn remove"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^0.5.0",

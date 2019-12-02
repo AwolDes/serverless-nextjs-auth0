@@ -4,12 +4,12 @@ export default initAuth0({
   domain: process.env.AUTH0_DOMAIN,
   clientId: process.env.AUTH0_CLIENT_ID,
   clientSecret: process.env.AUTH0_CLIENT_SECRET,
-  scope: 'openid profile',
-  redirectUri: 'http://localhost:3000/api/auth/callback',
-  postLogoutRedirectUri: 'http://localhost:3000/',
+  scope: process.env.AUTH0_SCOPE,
+  redirectUri: process.env.REDIRECT_URI,
+  postLogoutRedirectUri: process.env.POST_LOGOUT_REDIRECT_URI,
   session: {
-    cookieSecret: 'some-very-very-very-very-very-very-very-very-long-secret',
-    cookieLifetime: 60 * 60 * 8,
+    cookieSecret: process.env.SESSION_COOKIE_SECRET,
+    cookieLifetime: process.env.SESSION_COOKIE_LIFETIME,
     storeAccessToken: true
   }
 });

@@ -19,9 +19,7 @@ const Index = ({ authenticated }) => (
           Login
         </a>
       ) : (
-        <Link>
-          <a href="/settings" className="underline text-blue-500 hover:text-blue-700">Settings</a>
-        </Link>
+        <a href="/settings" className="underline text-blue-500 hover:text-blue-700">Settings</a>
       )}
     </div>
   </Layout>

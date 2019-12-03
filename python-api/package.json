@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy:staging": "sls deploy --stage staging",
     "sls:prune": "sls prune -n ",
+    "offline": "sls offline start",
     "sls:destroy": "sls remove --stage $NODE_ENV",
     "sls:destroy:staging": "NODE_ENV=staging yarn sls:destroy",
     "docs": "node swagger/index.js & USER_TABLE='abc' REGION='ap-southeast-2' python3.6 src/app.py"
@@ -23,6 +24,7 @@
     "swagger-ui-express": "^4.0.2"
   },
   "devDependencies": {
+    "serverless-offline-python": "^3.22.1",
     "serverless-prune-plugin": "^1.3.2"
   }
 }

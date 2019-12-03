@@ -26,8 +26,11 @@ plugins:
   - serverless-pseudo-parameters
   - serverless-prune-plugin
   - serverless-wsgi
+  - serverless-offline-python
 
 custom:
+  serverless-offline:
+    port: 4000
   configuration: ${file(./config/${self:provider.stage}.yml):config}
   defaultStage: dev
   profiles:

@@ -3,8 +3,8 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const domain = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://dv1gungd7fgiw.cloudfront.net';
-const apiEndpint = process.env.NODE_ENV === 'development' ? 'http://localhost:offlinedevport' : 'apigw_deployment';
+const domain = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'cloudfront_url_here';
+const apiEndpint = process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : 'apigw_url_here';
 
 module.exports = withCSS({
   target: 'serverless',

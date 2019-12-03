@@ -24,7 +24,7 @@ To deploy the client to Cloudfront & Lambda@Edge using [serverless-nextjs](https
 - [ ] CI/CD with Github Actions
 
 ## API
-To run the API locally: `cd python-api && yarn install && . activate_venv.sh && pip install -r requirements.txt && yarn offline`
+To run the API locally: `cd python-api && yarn install && python3.6 -m venv ./venv && . activate_venv.sh && pip install -r requirements.txt && yarn offline`
 
 This will make the REST API available at `http://localhost:4000`. Currently there is only a python API, which uses [FlaskRESTFul](https://flask-restful.readthedocs.io/en/latest/).
 

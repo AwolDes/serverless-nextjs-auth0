@@ -1,2 +1,6 @@
 myApp:
  component: serverless-next.js
+#  inputs:
+#   domain:
+#     - ${env.subdomain}
+#     - ${env.domain}

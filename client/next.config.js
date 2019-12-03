@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const domain = process.env.NODE_ENN === 'development' ? 'http://localhost:3000' : 'https://dv1gungd7fgiw.cloudfront.net';
+const domain = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://dv1gungd7fgiw.cloudfront.net';
 
 module.exports = withCSS({
   target: 'serverless',

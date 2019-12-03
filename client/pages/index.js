@@ -2,9 +2,11 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import auth0 from '../utils/auth0';
 import Layout from '../components/Layout';
+import { useAuthDispatch, useAuthState } from '../components/providers/Auth';
 
 import '../styles/index.css';
 
+// const auth = useAuthState();
 const Index = ({ authenticated }) => (
   <Layout>
     <div className="p-4 shadow rounded card--padded">
@@ -16,7 +18,7 @@ const Index = ({ authenticated }) => (
           className="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
           href="/api/auth/login"
         >
-          Login
+            Login
         </a>
       ) : (
         <a href="/settings" className="underline text-blue-500 hover:text-blue-700">Settings</a>
@@ -24,6 +26,7 @@ const Index = ({ authenticated }) => (
     </div>
   </Layout>
 );
+
 
 Index.getInitialProps = async ({ req }) => {
   if (typeof window === 'undefined') {

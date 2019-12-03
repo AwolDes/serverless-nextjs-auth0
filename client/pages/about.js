@@ -1,4 +1,5 @@
 import Layout from '../components/Layout';
+import { useFetchUser } from '../utils/auth0';
 
 export default function About() {
   return (

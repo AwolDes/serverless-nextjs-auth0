@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import Layout from '../components/Layout';
 import { useFetchUser } from '../utils/auth0';
 

@@ -1,10 +1,9 @@
-const baseUrl = process.env.API_ENDPOINT;
 import rp from 'request-promise';
 
 const createOptions = ({
   endpoint, data, method, token
 }) => {
-  console.log(`${process.env.API_ENDPOINT}/${endpoint}`)
+  console.log(`${process.env.API_ENDPOINT}/${endpoint}`);
   const payload = {
     uri: `${process.env.API_ENDPOINT}/${endpoint}`,
     method,

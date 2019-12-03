@@ -3,7 +3,7 @@ import { get } from '../../../utils/api';
 
 export default auth0.requireAuthentication(async (req, res) => {
   // use these on your own API
-  const { user } = await auth0.getSession(req);
-  const { accessToken } = await auth0.getSession(req);
+  // const { user } = await auth0.getSession(req);
+  // const { accessToken } = await auth0.getSession(req);
   return get(`users/${req.query.id}`).then(result => res.json(result));
 });

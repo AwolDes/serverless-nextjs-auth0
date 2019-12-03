@@ -3,7 +3,7 @@ import React, { useReducer, useContext } from 'react';
 const AuthStateContext = React.createContext();
 const AuthDispatchContext = React.createContext();
 
-const actions = {
+export const actions = {
   set_session: 'SET_SESSION',
   remove_session: 'REMOVE_SESSION',
 };
@@ -11,16 +11,17 @@ const actions = {
 const reducer = (state, action) => {
   switch (action.type) {
     case actions.set_session:
-      return state;
+      return action.data;
     case actions.remove_session:
-      return {};
+      return null;
     default:
       throw new Error(`Unkown action: ${action.type}`);
   }
 };
 
+// eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, {});
+  const [state, dispatch] = useReducer(reducer, null);
   return (
     <AuthDispatchContext.Provider value={dispatch}>
       <AuthStateContext.Provider value={state}>

@@ -1,6 +1,7 @@
 import { initAuth0 } from '@auth0/nextjs-auth0';
 import { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
+import { useAuthDispatch, useAuthState, actions as authActions } from '../components/providers/Auth';
 
 // auth0 client
 export default initAuth0({
@@ -21,10 +22,11 @@ export default initAuth0({
   }
 });
 
-// Hook to make user available to all pages
-export async function fetchUser(cookie = '') {
-  if (typeof window !== 'undefined' && window.__user) {
-    return window.__user;
+// Hook to make user available to all page
+
+export async function fetchUser({ cookie = '', storedUser }) {
+  if (typeof window !== 'undefined' && storedUser) {
+    return storedUser;
   }
 
   const res = await fetch(
@@ -39,27 +41,24 @@ export async function fetchUser(cookie = '') {
   );
 
   if (!res.ok) {
-    delete window.__user;
     return null;
   }
 
   const json = await res.json();
-  if (typeof window !== 'undefined') {
-    window.__user = json;
-  }
   return json;
 }
 
 export function useFetchUser({ required } = {}) {
+  const storedUser = useAuthState();
   const [loading, setLoading] = useState(
-    () => !(typeof window !== 'undefined' && window.__user)
+    () => !(typeof window !== 'undefined' && storedUser)
   );
   const [user, setUser] = useState(() => {
     if (typeof window === 'undefined') {
       return null;
     }
 
-    return window.__user || null;
+    return storedUser || null;
   });
 
   useEffect(
@@ -69,12 +68,12 @@ export function useFetchUser({ required } = {}) {
       }
       setLoading(true);
       let isMounted = true;
-
-      fetchUser().then(user => {
+      fetchUser({ storedUser }).then(user => {
         // Only set the user if the component is still mounted
         if (isMounted) {
           // When the user is not logged in but login is required
           if (required && !user) {
+            // eslint-disable-next-line no-undef
             window.location.href = '/api/auth/login';
             return;
           }
@@ -83,6 +82,7 @@ export function useFetchUser({ required } = {}) {
         }
       });
 
+      // eslint-disable-next-line consistent-return
       return () => {
         isMounted = false;
       };
@@ -90,6 +90,13 @@ export function useFetchUser({ required } = {}) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
+
+  const dispatchAuth = useAuthDispatch();
+
+  dispatchAuth({
+    type: authActions.set_session,
+    data: user
+  });
 
   return { user, loading };
 }

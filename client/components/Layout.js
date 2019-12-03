@@ -12,7 +12,11 @@ const Layout = ({ children, loading, user }) => (
 Layout.propTypes = {
   children: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object,
+};
+
+Layout.defaultProps = {
+  user: {}
 };
 
 export default Layout;

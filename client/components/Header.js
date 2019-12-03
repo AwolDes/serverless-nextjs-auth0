@@ -7,7 +7,9 @@ const linkStyle = {
 
 const Header = ({ user }) => (
   <div>
-    <a href="/" style={linkStyle}>Home</a>
+    <Link href="/">
+      <a style={linkStyle}>Home</a>
+    </Link>
     <Link href="/about">
       <a style={linkStyle}>About</a>
     </Link>
@@ -20,7 +22,11 @@ const Header = ({ user }) => (
 );
 
 Header.propTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object,
+};
+
+Header.defaultProps = {
+  user: {}
 };
 
 export default Header;

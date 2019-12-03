@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const domain = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://dv1gungd7fgiw.cloudfront.net';
+const apiEndpint = process.env.NODE_ENV === 'development' ? 'http://localhost:offlinedevport' : 'apigw_deployment';
 
 module.exports = withCSS({
   target: 'serverless',
@@ -28,5 +29,6 @@ module.exports = withCSS({
       process.env.POST_LOGOUT_REDIRECT_URI || `${domain}/`,
     SESSION_COOKIE_SECRET: 'a-very-log-secure-phrase-here-that-must-be-32-chars-long',
     SESSION_COOKIE_LIFETIME: 7200, // 2 hours
+    API_ENDPOINT: apiEndpint
   },
 });

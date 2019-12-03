@@ -1,0 +1,73 @@
+service: python-api
+
+provider:
+  name: aws
+  runtime: python3.6
+  profile: ${self:custom.profiles.${self:provider.stage}}
+  stage: ${opt:stage, self:custom.defaultStage}
+  memorySize: 128
+  logRetentionInDays: 14
+  timeout: 15
+  region: ${self:custom.configuration.region, opt:region}
+
+  # iamRoleStatements:
+  #   - Effect: Allow
+  #     Action:
+  #       - iam:permsission
+  #     Resource:
+  #       - arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:x:x:x
+  environment:
+    STAGE: ${self:provider.stage}
+    REGION: ${self:provider.region}
+    ACCOUNT_ID: "#{AWS::AccountId}"
+
+plugins:
+  - serverless-python-requirements
+  - serverless-pseudo-parameters
+  - serverless-prune-plugin
+  - serverless-wsgi
+
+custom:
+  configuration: ${file(./config/${self:provider.stage}.yml):config}
+  defaultStage: dev
+  profiles:
+    dev: personal
+    staging: personal
+  ## PLUGINS
+  prune:
+    automatic: true
+    number: 5
+  pythonRequirements:
+    dockerizePip: non-linux
+  wsgi:
+    app: src/app.app
+    packRequirements: false
+
+  # layers:
+  #   - arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:layer:layer-name:version
+package:
+ include:
+   - src/**
+ exclude:
+   - __pycache__/**
+   - venv/**
+   - node_modules/**
+   - package.json
+   - yarn.lock
+
+functions:
+  api:
+    handler: wsgi_handler.handler
+    events:
+      - http:
+          path: /
+          method: ANY
+          # cors: true
+      - http:
+          path: '{proxy+}'
+          method: ANY
+          # cors: true
+    # environment:
+    # layers: ${self:custom.layers}
+    tags:
+      service: api

@@ -1,0 +1,6 @@
+flask
+flask-restful
+passlib
+flask-cors
+requests
+simplejson

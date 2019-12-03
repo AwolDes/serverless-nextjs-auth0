@@ -23,24 +23,4 @@ const Settings = () => {
   );
 };
 
-// Settings.getInitialProps = async ({ req, res }) => {
-//   if (typeof window === 'undefined') {
-//     const user = await auth0.getSession(req);
-//     if (!user) {
-//       res.writeHead(302, {
-//         Location: '/api/auth/login'
-//       });
-//       res.end();
-//       return {};
-//     }
-
-//     return { user };
-//   }
-//   return {};
-// };
-
-Settings.propTypes = {
-  user: PropTypes.object.isRequired
-};
-
 export default Settings;

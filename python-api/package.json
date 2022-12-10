@@ -15,7 +15,7 @@
   "author": "Austin Wilshire",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "serverless": "^1.34.1",
     "serverless-plugin-write-env-vars": "^1.0.1",
     "serverless-pseudo-parameters": "^2.2.0",
